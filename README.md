@@ -1,5 +1,3 @@
-
-
 # ES6-Cheatsheet
 An ES6. Made by myself, for myself, based on my own requirements &amp; how my head works. If it helps someone else, then awesome! Pull requests with improvements are more than welcome.
 
@@ -17,6 +15,10 @@ An ES6. Made by myself, for myself, based on my own requirements &amp; how my he
  - [Let & Const](#Let-&-Const)
  - [Import & Export](#Import-&-Export)
  - [PadStart & PadEnd](#PadStart-&-PadEnd)
+ - [Classes](#Classes)
+ - [Trailing Commas](#Trailing-Commas)
+ - [Async & Await](#Async-&-Await)
+ - [Sets](#Sets)
 
 ## String Literals
 ```js
@@ -185,4 +187,78 @@ console.log(aString.padStart(10, 'a')); // aaaaahello
 // PadEbd adds to the end of a string, until the character length is met.
 let aString = "hello";
 console.log(aString.padEnd(10, 'a')); // helloaaaaa
+```
+
+## Classes
+```js
+export class Animal {
+	constructor(name, age) {
+		this.name = name;
+		this.age = age;
+	}
+
+	function makeNoise(){
+		console.log("a noise");
+	}
+
+	static function printHello(){
+		console.log("Hello");
+	}
+}
+```
+
+```js
+import { Animal } from "./animal.js";
+
+let cat = new Animal("Tiger", 3);
+cat.age = 4;
+cat.makeNoise(); // a noise
+```
+
+```js
+import { Animal } from "./animal.js";
+
+Animal.printHello(); // Hello
+```
+
+```js
+export class Dog extends Animal {
+	function makeNoise(){
+		console.log("woof");
+	}
+}
+```
+
+## Trailing Commas
+```js
+function something(param,){ // no error
+...
+}
+```
+```js
+const human = { name: "Bob", }, // no error
+```
+
+## Async & Await
+No more promise hell! 
+`await` functions that return promises.
+```js
+const apiUrl = "http://...";
+
+async function makeApiCall(){
+	const response = await fetch(apiUrl);
+	const responseJson = await response.json();
+	console.log(json[0]); 
+	// Without await, this would be executed before we have a response 
+	// from the API and log null.
+}
+```
+
+## Sets
+```js
+const exampleSet = new Set([1,1,2,2,2]);
+exampleSet.add(5).add(10).add(20);
+console.log(exampleSet); // [1,1,2,2,2,5,10,20]
+console.log(exampleSet.has(10)); // true
+console.log(exampleSet.has(7)); // false
 ```
